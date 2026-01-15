@@ -1,0 +1,30 @@
+{
+  "name": "ngx-hyperpay",
+  "version": "0.0.1",
+  "description": "Angular library for HyperPay payment gateway integration",
+  "keywords": [
+    "angular",
+    "hyperpay",
+    "payment",
+    "gateway",
+    "ngx"
+  ],
+  "author": "Mohamed Magdy Abouelnasr",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MagdyAbouelnasr/ngx-hyperpay.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MagdyAbouelnasr/ngx-hyperpay/issues"
+  },
+  "homepage": "https://github.com/MagdyAbouelnasr/ngx-hyperpay#readme"
+}
