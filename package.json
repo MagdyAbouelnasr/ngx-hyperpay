@@ -26,5 +26,19 @@
   "bugs": {
     "url": "https://github.com/MagdyAbouelnasr/ngx-hyperpay/issues"
   },
-  "homepage": "https://github.com/MagdyAbouelnasr/ngx-hyperpay#readme"
+  "homepage": "https://github.com/MagdyAbouelnasr/ngx-hyperpay#readme",
+  "scripts": {
+    "ng": "ng",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.0.0",
+    "@angular/cli": "^19.0.0",
+    "@angular/compiler-cli": "^19.0.0",
+    "ng-packagr": "^19.0.0",
+    "typescript": "~5.5.0",
+    "zone.js": "~0.14.0"
+  }
 }
