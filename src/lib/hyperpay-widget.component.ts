@@ -1,9 +1,9 @@
 import { Component, Input, OnInit, OnDestroy, Inject, PLATFORM_ID, Output, EventEmitter } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
     selector: 'ngx-hyperpay',
-    imports: [CommonModule],
+    imports: [],
     standalone: true,
     templateUrl: './hyperpay-widget.component.html',
     styleUrls: ['./hyperpay-widget.component.scss']
