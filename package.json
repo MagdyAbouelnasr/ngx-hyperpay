@@ -1,6 +1,6 @@
 {
   "name": "ngx-hyperpay",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Angular library for HyperPay payment gateway integration",
   "keywords": [
     "angular",
