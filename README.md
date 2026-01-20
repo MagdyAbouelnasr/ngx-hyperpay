@@ -26,6 +26,8 @@ import { NgxHyperpayComponent } from 'ngx-hyperpay';
       [checkoutId]="checkoutId"
       [brands]="'VISA MASTER MADA'"
       [mode]="'test'"
+      [shopperResultUrl]="'https://your-domain.com/callback'" 
+      [redirectUrl]="'https://your-domain.com/home'"
       (onSuccess)="onPaymentSuccess($event)"
       (onFailure)="onPaymentFailure($event)"
       (onCancel)="onPaymentCancel($event)"
@@ -66,6 +68,7 @@ export class MyComponent {
 | `style`         | `'card'` \| `'plain'`   | `'card'`         | The visual style of the payment form.                                                                   |
 | `locale`        | `'en'` \| `'ar'`      | `'en'`           | The language of the payment widget.                                                                     |
 | `paymentTarget` | `string`              | `'hyperpay-frame'` | The name of the iframe where the payment form will be rendered.                                         |
+| `shopperResultUrl`| `string`              | `''`             | The custom callback URL to redirect to after payment. Overrides `redirectUrl` and default behavior.     |
 | `redirectUrl`   | `string`              | `''`             | The URL to redirect to after the payment. Defaults to the current URL.                                  |
 
 ### Outputs
@@ -92,4 +95,4 @@ After building your library with `ng build ngx-hyperpay`, go to the dist folder 
 
 ## Repository
 
-The source code is available on [GitLab](https://your-gitlab-repository-url).
+The source code is available on [GitLab](https://github.com/MagdyAbouelnasr/ngx-hyperpay).

@@ -8,7 +8,7 @@
 
   <div [id]="'payment-widget-container-' + checkoutId">
     <form
-      [action]="redirectUrl"
+      [action]="effectiveRedirectUrl"
       class="paymentWidgets"
       [attr.data-brands]="brands"
       [target]="paymentTarget"
