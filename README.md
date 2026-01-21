@@ -67,7 +67,6 @@ export class MyComponent {
 | `mode`          | `'test'` \| `'live'`    | `'test'`         | The mode for the HyperPay script. Use `'test'` for development and `'live'` for production.             |
 | `style`         | `'card'` \| `'plain'`   | `'card'`         | The visual style of the payment form.                                                                   |
 | `locale`        | `'en'` \| `'ar'`      | `'en'`           | The language of the payment widget.                                                                     |
-| `paymentTarget` | `string`              | `'hyperpay-frame'` | The name of the iframe where the payment form will be rendered.                                         |
 | `shopperResultUrl`| `string`              | `''`             | The custom callback URL to redirect to after payment. Overrides `redirectUrl` and default behavior.     |
 | `redirectUrl`   | `string`              | `''`             | The URL to redirect to after the payment. Defaults to the current URL.                                  |
 

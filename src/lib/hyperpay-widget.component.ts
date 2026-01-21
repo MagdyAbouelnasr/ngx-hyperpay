@@ -14,7 +14,7 @@ export class NgxHyperpayComponent implements OnInit, OnDestroy {
   @Input() mode: "test" | "live" = "test";
   @Input() style: "card" | "plain" = "card";
   @Input() locale: "en" | "ar" = "en";
-  @Input() paymentTarget: string = "hyperpay-frame";
+
   @Input() shopperResultUrl: string = "";
   @Input() redirectUrl: string = "";
 
