@@ -10,6 +10,15 @@ Install the package from npm:
 npm install ngx-hyperpay
 ```
 
+## Backend Integration Required
+
+**Security Note:** Do NOT perform sensitive operations (like generating checkout IDs or querying payment status with authorization tokens) on the client-side.
+
+1.  **Generate Checkout ID**: Call your backend API to Request a `checkoutId` from HyperPay using your secret entityId and authorization token.
+2.  **Pass to Component**: Pass the received `checkoutId` to the `ngx-hyperpay` component.
+3.  **Handle Callback**: When the payment is complete, HyperPay redirects to your `shopperResultUrl`. The component will emit the `resourcePath` (or `id`).
+4.  **Verify Payment**: Send this `resourcePath` to your backend. Your backend should then query HyperPay's status API using this path to confirm the payment validity and status.
+
 ## Usage
 
 1.  Import the `NgxHyperpayComponent` in your component or module:
