@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/MagdyAbouelnasr/ngx-hyperpay/compare/v1.0.0...v1.0.1) (2026-01-22)
+
+
+### Bug Fixes
+
+* remove iframe and simplify callback handling ([db053f1](https://github.com/MagdyAbouelnasr/ngx-hyperpay/commit/db053f1737fdabc1dc108b65ada21d93fc447ad0))
+
 # 1.0.0 (2026-01-20)
 
 
