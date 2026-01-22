@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/MagdyAbouelnasr/ngx-hyperpay/compare/v1.1.0...v1.2.0) (2026-01-22)
+
+
+### Features
+
+* add raw and decoded outputs for resourcePath and id query params ([0d7599b](https://github.com/MagdyAbouelnasr/ngx-hyperpay/commit/0d7599bcc8e6b683c85b6a19f82d4cf4ba84435e))
+
 # [1.1.0](https://github.com/MagdyAbouelnasr/ngx-hyperpay/compare/v1.0.1...v1.1.0) (2026-01-22)
 
 
