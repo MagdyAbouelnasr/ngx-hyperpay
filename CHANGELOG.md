@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/MagdyAbouelnasr/ngx-hyperpay/compare/v1.0.1...v1.1.0) (2026-01-22)
+
+
+### Features
+
+* Emit the `resourcePath` query parameter from the URL via a new `getResourcePath` output. ([d454dd0](https://github.com/MagdyAbouelnasr/ngx-hyperpay/commit/d454dd05bd2fb5547f8cd2b338e9ed283ad04b91))
+
 ## [1.0.1](https://github.com/MagdyAbouelnasr/ngx-hyperpay/compare/v1.0.0...v1.0.1) (2026-01-22)
 
 
