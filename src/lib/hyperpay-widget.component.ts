@@ -24,6 +24,9 @@ export class NgxHyperpayComponent implements OnInit, OnDestroy {
   @Output() onCancel = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
   @Output() getResourcePath = new EventEmitter<string>();
+  @Output() getRawResourcePath = new EventEmitter<string>();
+  @Output() getId = new EventEmitter<string>();
+  @Output() getRawId = new EventEmitter<string>();
 
   loading = true;
   private scriptElement: HTMLScriptElement | null = null;
@@ -32,11 +35,28 @@ export class NgxHyperpayComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const resourcePath = urlParams.get("resourcePath");
+      const resourcePathRaw = this.getRawQueryParam('resourcePath');
+      if (resourcePathRaw) {
+        this.getRawResourcePath.emit(resourcePathRaw);
+        try {
+          const resourcePathDecoded = decodeURIComponent(resourcePathRaw);
+          this.getResourcePath.emit(resourcePathDecoded);
+        } catch (e) {
+          console.error('Failed to decode resourcePath', e);
+          this.getResourcePath.emit(resourcePathRaw);
+        }
+      }
 
-      if (resourcePath) {
-        this.getResourcePath.emit(resourcePath);
+      const idRaw = this.getRawQueryParam('id');
+      if (idRaw) {
+        this.getRawId.emit(idRaw);
+        try {
+          const idDecoded = decodeURIComponent(idRaw);
+          this.getId.emit(idDecoded);
+        } catch (e) {
+          console.error('Failed to decode id', e);
+          this.getId.emit(idRaw);
+        }
       }
 
       this.initializeWpwlOptions();
@@ -56,6 +76,16 @@ export class NgxHyperpayComponent implements OnInit, OnDestroy {
 
   get effectiveRedirectUrl(): string {
     return this.shopperResultUrl || this.redirectUrl;
+  }
+
+  private getRawQueryParam(paramName: string): string | null {
+    if (!isPlatformBrowser(this.platformId)) {
+      return null;
+    }
+    const search = window.location.search;
+    const regex = new RegExp('[?&]' + paramName + '=([^&]*)');
+    const match = search.match(regex);
+    return match ? match[1] : null;
   }
 
   private initializeWpwlOptions(): void {
