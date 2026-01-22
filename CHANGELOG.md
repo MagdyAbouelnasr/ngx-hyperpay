@@ -1,3 +1,11 @@
+## [1.2.1](https://github.com/MagdyAbouelnasr/ngx-hyperpay/compare/v1.2.0...v1.2.1) (2026-01-22)
+
+
+### Bug Fixes
+
+* remove unused hono and express dependencies ([5ee64c5](https://github.com/MagdyAbouelnasr/ngx-hyperpay/commit/5ee64c5535376e1926028f58d17d592ea2b18288))
+* restore hono and express as devDependencies for Angular CLI build ([fa647db](https://github.com/MagdyAbouelnasr/ngx-hyperpay/commit/fa647dba7cc314658892b26b104df7fb986fbf5b))
+
 # [1.2.0](https://github.com/MagdyAbouelnasr/ngx-hyperpay/compare/v1.1.0...v1.2.0) (2026-01-22)
 
 
