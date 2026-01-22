@@ -23,6 +23,7 @@ export class NgxHyperpayComponent implements OnInit, OnDestroy {
   @Output() onFailure = new EventEmitter<any>();
   @Output() onCancel = new EventEmitter<any>();
   @Output() onError = new EventEmitter<any>();
+  @Output() getResourcePath = new EventEmitter<string>();
 
   loading = true;
   private scriptElement: HTMLScriptElement | null = null;
@@ -31,6 +32,13 @@ export class NgxHyperpayComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const resourcePath = urlParams.get("resourcePath");
+
+      if (resourcePath) {
+        this.getResourcePath.emit(resourcePath);
+      }
+
       this.initializeWpwlOptions();
       if (!this.shopperResultUrl && !this.redirectUrl) {
         this.redirectUrl = window.location.href;

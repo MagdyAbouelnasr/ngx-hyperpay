@@ -79,6 +79,7 @@ export class MyComponent {
 | `onFailure` | `any`                  | Emitted when the payment fails.                        |
 | `onCancel`  | `any`                  | Emitted when the user cancels the payment.             |
 | `onError`   | `any`                  | Emitted when an error occurs (e.g., script fails to load). |
+| `getResourcePath`| `string`              | Emitted when `resourcePath` query parameter is found in the URL. |
 
 ## Development
 

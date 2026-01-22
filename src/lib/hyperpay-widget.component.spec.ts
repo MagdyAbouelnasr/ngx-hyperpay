@@ -43,4 +43,32 @@ describe('NgxHyperpayComponent', () => {
     const formElement: HTMLFormElement = fixture.nativeElement.querySelector('form');
     expect(formElement.getAttribute('action')).toBe('https://action-url.com');
   });
+
+  describe("with resourcePath in URL", () => {
+    const originalUrl = window.location.href;
+
+    beforeEach(() => {
+      const url = new URL(window.location.href);
+      url.searchParams.set("resourcePath", "/v1/checkouts/123/payment");
+      window.history.replaceState({}, "", url.toString());
+    });
+
+    afterEach(() => {
+      window.history.replaceState({}, "", originalUrl);
+    });
+
+    it("should emit decoded resourcePath", () => {
+      // Create a fresh fixture to trigger ngOnInit with the new URL
+      const newFixture = TestBed.createComponent(NgxHyperpayComponent);
+      const newComponent = newFixture.componentInstance;
+      newComponent.checkoutId = "test-checkout-id-123";
+
+      spyOn(newComponent.getResourcePath, "emit");
+      newFixture.detectChanges(); // Triggers ngOnInit
+
+      expect(newComponent.getResourcePath.emit).toHaveBeenCalledWith(
+        "/v1/checkouts/123/payment",
+      );
+    });
+  });
 });
