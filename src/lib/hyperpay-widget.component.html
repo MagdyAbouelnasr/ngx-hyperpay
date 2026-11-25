@@ -1,11 +1,20 @@
-<div class="payment-container">
-  @if (loading) {
-    <div class="loading-spinner">
-      <div class="spinner"></div>
-      <p>Loading Payment Options...</p>
+<div class="payment-container" [attr.aria-busy]="isLoading()">
+  @if (isLoading()) {
+    <div class="loading-spinner" role="status">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>{{ effectiveLoadingText }}</p>
     </div>
   }
 
+  <!-- HyperPay replaces the form with its own, so every load switches to a new form. -->
+  @if (loadId() % 2 === 1) {
+    <ng-container [ngTemplateOutlet]="paymentForm" />
+  } @else {
+    <ng-container [ngTemplateOutlet]="paymentForm" />
+  }
+</div>
+
+<ng-template #paymentForm>
   <div [id]="'payment-widget-container-' + checkoutId">
     <form
       [action]="effectiveRedirectUrl"
@@ -13,4 +22,4 @@
       [attr.data-brands]="brands"
     ></form>
   </div>
-</div>
+</ng-template>

@@ -12,8 +12,8 @@
   "author": "Mohamed Magdy Abouelnasr",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^21.0.0",
-    "@angular/core": "^21.0.0"
+    "@angular/common": "^21.0.0 || ^22.0.0",
+    "@angular/core": "^21.0.0 || ^22.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
@@ -31,7 +31,9 @@
     "ng": "ng",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+    "use:angular-22": "npm pkg set devDependencies.@angular/build=^22.0.0 devDependencies.@angular/cli=^22.0.0 devDependencies.@angular/common=^22.0.0 devDependencies.@angular/compiler=^22.0.0 devDependencies.@angular/compiler-cli=^22.0.0 devDependencies.@angular/core=^22.0.0 devDependencies.@angular/platform-browser=^22.0.0 devDependencies.@angular/platform-browser-dynamic=^22.0.0 devDependencies.ng-packagr=^22.0.0 devDependencies.typescript=~6.0.0 && rm -rf node_modules package-lock.json && npm install"
   },
   "devDependencies": {
     "@angular/build": "^21.1.0",
