@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/MagdyAbouelnasr/ngx-hyperpay/compare/v1.2.1...v1.3.0) (2026-11-25)
+
+
+### Features
+
+* support angular 22, script integrity, regions, arabic loading text and hyperpay errors ([cae6a9c](https://github.com/MagdyAbouelnasr/ngx-hyperpay/commit/cae6a9ce980d4f9f6b58ca72826f16098773feb6))
+
 ## [1.2.1](https://github.com/MagdyAbouelnasr/ngx-hyperpay/compare/v1.2.0...v1.2.1) (2026-01-22)
 
 
