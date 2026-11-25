@@ -10,6 +10,8 @@ Install the package from npm:
 npm install ngx-hyperpay
 ```
 
+Works with Angular 21 and 22, with or without zone.js.
+
 ## Backend Integration Required
 
 **Security Note:** Do NOT perform sensitive operations (like generating checkout IDs or querying payment status with authorization tokens) on the client-side.
@@ -35,35 +37,44 @@ import { NgxHyperpayComponent } from 'ngx-hyperpay';
       [checkoutId]="checkoutId"
       [brands]="'VISA MASTER MADA'"
       [mode]="'test'"
-      [shopperResultUrl]="'https://your-domain.com/callback'" 
-      [redirectUrl]="'https://your-domain.com/home'"
-      (onSuccess)="onPaymentSuccess($event)"
-      (onFailure)="onPaymentFailure($event)"
-      (onCancel)="onPaymentCancel($event)"
+      [region]="'eu'"
+      [locale]="'ar'"
+      [integrity]="integrity"
+      [shopperResultUrl]="'https://your-domain.com/callback'"
+      (getResourcePath)="checkStatus($event)"
+      (onCancel)="onPaymentCancel()"
       (onError)="onPaymentError($event)"
     ></ngx-hyperpay>
   `
 })
 export class MyComponent {
-  checkoutId = 'YOUR_CHECKOUT_ID'; // Obtain this from your server
+  // Both come from your server.
+  checkoutId = 'YOUR_CHECKOUT_ID';
+  integrity = 'sha384-...';
 
-  onPaymentSuccess(data: any) {
-    console.log('Payment successful:', data);
+  checkStatus(resourcePath: string) {
+    // Ask your backend for the payment status. The address alone proves nothing.
   }
 
-  onPaymentFailure(data: any) {
-    console.log('Payment failed:', data);
+  onPaymentCancel() {
+    console.log('The shopper closed the payment');
   }
 
-  onPaymentCancel(data: any) {
-    console.log('Payment cancelled:', data);
-  }
-
-  onPaymentError(error: any) {
+  onPaymentError(error: unknown) {
     console.error('An error occurred:', error);
   }
 }
 ```
+
+### How the result arrives
+
+HyperPay sends the shopper to `shopperResultUrl` with a `resourcePath`. It documents no success or failure
+callback, so `onSuccess` and `onFailure` are deprecated: use `getResourcePath` and check the status on your backend.
+
+### Script integrity (PCI DSS 4)
+
+Create the checkout with `integrity=true` and pass the `integrity` value of the response to the component. The
+browser then refuses a script that was changed. The component also uses Angular's `CSP_NONCE` when you provide it.
 
 ## API
 
@@ -76,6 +87,10 @@ export class MyComponent {
 | `mode`          | `'test'` \| `'live'`    | `'test'`         | The mode for the HyperPay script. Use `'test'` for development and `'live'` for production.             |
 | `style`         | `'card'` \| `'plain'`   | `'card'`         | The visual style of the payment form.                                                                   |
 | `locale`        | `'en'` \| `'ar'`      | `'en'`           | The language of the payment widget.                                                                     |
+| `region` | `'global'` \| `'eu'` | `'global'` | `eu` loads the script from `eu-test`/`eu-prod.oppwa.com`. Ask HyperPay which one your account uses. |
+| `integrity` | `string` | `''` | The `integrity` value of the created checkout. |
+| `loadingText` | `string` | By `locale` | The text under the spinner. |
+| `options` | `Record<string, unknown>` | `{}` | More `wpwlOptions`. The options the component sets itself win. |
 | `shopperResultUrl`| `string`              | `''`             | The custom callback URL to redirect to after payment. Overrides `redirectUrl` and default behavior.     |
 | `redirectUrl`   | `string`              | `''`             | The URL to redirect to after the payment. Defaults to the current URL.                                  |
 
@@ -84,10 +99,10 @@ export class MyComponent {
 | Output      | EventEmitter&lt;any&gt; | Description                                            |
 | ----------- | ---------------------- | ------------------------------------------------------ |
 | `onReady`   | `void`                 | Emitted when the HyperPay widget is ready.             |
-| `onSuccess` | `any`                  | Emitted when the payment is successful.                |
-| `onFailure` | `any`                  | Emitted when the payment fails.                        |
-| `onCancel`  | `any`                  | Emitted when the user cancels the payment.             |
-| `onError`   | `any`                  | Emitted when an error occurs (e.g., script fails to load). |
+| `onSuccess` | `any` | **Deprecated.** HyperPay documents no such callback. |
+| `onFailure` | `any` | **Deprecated.** HyperPay documents no such callback. |
+| `onCancel` | `any` | Emitted when the shopper closes the payment before finishing it. |
+| `onError` | `any` | Emitted when the script cannot be loaded or HyperPay reports an error, such as an expired checkout. |
 | `getResourcePath`| `string`              | Emitted when `resourcePath` query parameter is found (decoded). |
 | `getRawResourcePath`| `string`              | Emitted when `resourcePath` query parameter is found (raw encoded). |
 | `getId` | `string` | Emitted when `id` query parameter is found (decoded). |
@@ -101,10 +116,14 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng build ngx-hyperpay` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+### Test
+
+Run `npm run test:ci`. CI runs it on Angular 21 and 22.
+
 ### Publishing
 
-After building your library with `ng build ngx-hyperpay`, go to the dist folder `cd dist/ngx-hyperpay` and run `npm publish`.
+A push to `main` runs semantic-release, which publishes to npm.
 
 ## Repository
 
-The source code is available on [GitLab](https://github.com/MagdyAbouelnasr/ngx-hyperpay).
+The source code is available on [GitHub](https://github.com/MagdyAbouelnasr/ngx-hyperpay).
